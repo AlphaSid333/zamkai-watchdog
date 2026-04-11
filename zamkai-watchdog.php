@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Zamkai Wathdog
+ * Plugin Name: Zamkai Watchdog
  * Description: Watch out for intruders and CHOW them down.
  * Author: TechGrill
  * Version: 1.0
@@ -27,7 +27,17 @@ class Zamkai_WD_Main {
 
 	function __construct() {
 
+		add_action('init', array($this,'get_admins'));
+		require_once ZAMKAI_WATCHDOG_PATH . '/admin/zk-watchdog-admin.php';
+		
+
 	}
+
+	public function get_admins(){
+		$admins = get_users( [ 'role' => 'administrator' ] );
+		error_log(print_r($admins, true));
+	}
+	
 
 }
 
