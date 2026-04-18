@@ -29,7 +29,6 @@ class Zamkai_WD_Main {
 
 		add_action('init', array($this,'get_admins'));
 		require_once ZAMKAI_WATCHDOG_PATH . '/admin/zk-watchdog-admin.php';
-		
 
 	}
 
