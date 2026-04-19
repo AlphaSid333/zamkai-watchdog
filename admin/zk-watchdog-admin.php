@@ -7,6 +7,7 @@ class ZK_Watchdog_Admin {
 
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_menus' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 	}
 
 	public function register_menus() {
@@ -43,6 +44,20 @@ class ZK_Watchdog_Admin {
 		if ( file_exists( $template ) ) {
 			include $template;
 		}
+	}
+
+	public function enqueue_admin_styles( $hook_suffix ) {
+		if ( $hook_suffix !== 'zamkai-watchdog_page_zamkai-wd-trusted-admins' ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'zk-get-admin',
+			ZAMKAI_WATCHDOG_URL . 'admin/get admins/zk-get-admin.js',
+			array(),
+			'1.0.0',
+			true
+		);
 	}
 
 }

@@ -1,3 +1,10 @@
+document.addEventListener( 'DOMContentLoaded', () => {
+	const input = document.getElementById( 'trusted-admin-search' );
+	input.addEventListener( 'input', ( e ) => {
+		searchTrustedAdmins( e.target.value );
+	} );
+} );
+
 function searchTrustedAdmins( searchTerm ) {
 	const dropdown = document.getElementById( 'trusted-admin-results' );
 

@@ -18,13 +18,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<label for="trusted-admin-search"><?php esc_html_e( 'Search bar', 'zamkai-watchdog' ); ?></label>
 					</th>
 					<td>
-						<input
-							type="search"
-							id="trusted-admin-search"
-							name="trusted_admin_search"
-							class="regular-text"
-							placeholder="<?php esc_attr_e( 'Search by name or email&hellip;', 'zamkai-watchdog' ); ?>"
-						/>
+						<div style="position: relative; display: inline-block;">
+							<input
+								type="search"
+								id="trusted-admin-search"
+								name="trusted_admin_search"
+								class="regular-text"
+								placeholder="<?php esc_attr_e( 'Search by name or email&hellip;', 'zamkai-watchdog' ); ?>"
+								autocomplete="off"
+							/>
+							<div id="trusted-admin-results" style="display:none; position: absolute; z-index: 9999; background: #fff; border: 1px solid #c3c4c7; width: 100%;"></div>
+						</div>
 						<button type="submit" class="button button-primary" style="margin-left: 6px;">
 							<?php esc_html_e( 'Add', 'zamkai-watchdog' ); ?>
 						</button>
