@@ -47,17 +47,24 @@ class ZK_Watchdog_Admin {
 	}
 
 	public function enqueue_admin_styles( $hook_suffix ) {
-		if ( $hook_suffix !== 'zamkai-watchdog_page_zamkai-wd-trusted-admins' ) {
-			return;
-		}
+		if ( $hook_suffix === 'zamkai-watchdog_page_zamkai-wd-trusted-admins' ) {
+			wp_enqueue_script(
+				'zk-get-admin',
+				ZAMKAI_WATCHDOG_URL . 'admin/get admins/zk-get-admin.js',
+				array(),
+				'1.0.0',
+				true
+			);
 
-		wp_enqueue_script(
-			'zk-get-admin',
-			ZAMKAI_WATCHDOG_URL . 'admin/get admins/zk-get-admin.js',
-			array(),
-			'1.0.0',
-			true
-		);
+			wp_localize_script(
+				'zk-get-admin',
+				'zkWatchdog',
+				array(
+					'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+					'nonce'   => wp_create_nonce( 'zk_search_trusted_admins' ),
+				)
+			);
+		}
 	}
 
 }
