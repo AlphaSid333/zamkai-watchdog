@@ -3,11 +3,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once ZAMKAI_WATCHDOG_PATH . 'admin/get admins/zk-get-admins.php';
+
 class ZK_Watchdog_Admin {
+
+	use ZK_Get_Admins;
 
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_menus' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
+		add_action( 'wp_ajax_zk_search_admins', array( $this,'zk_search_admins') );
 	}
 
 	public function register_menus() {
@@ -61,7 +66,7 @@ class ZK_Watchdog_Admin {
 				'zkWatchdog',
 				array(
 					'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-					'nonce'   => wp_create_nonce( 'zk_search_trusted_admins' ),
+					'nonce'   => wp_create_nonce( 'zk_search_admins_nonce' ),
 				)
 			);
 		}

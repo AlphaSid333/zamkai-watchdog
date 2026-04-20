@@ -18,7 +18,7 @@ function searchTrustedAdmins( searchTerm ) {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		body: new URLSearchParams( {
-			action:   'zk_search_trusted_admins',
+			action:   'zk_search_admins',
 			nonce:    zkWatchdog.nonce,
 			search:   searchTerm,
 		} ),
